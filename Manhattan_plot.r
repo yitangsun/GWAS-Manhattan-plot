@@ -38,8 +38,7 @@ Out_Geno_filename="_All_trait_03_21.txt"
 Old_Out_Geno_filename="_All_trait.csv"
 Trait_filename="All_Trait_IEU_GWAS.txt"
 
-#PUFA_LIST=c("PUFA","Omega_3","Omega_6","LA","DHA")
-PUFA_LIST=c("Omega_3","Omega_6","LA","DHA")
+PUFA_LIST=c("PUFA","Omega_3","Omega_6","LA","DHA")
 
 for (n in PUFA_LIST) {
   Trait1_final_infile=paste(Pathway_geno,"met-d-",n,".vcf", sep="")
@@ -75,5 +74,56 @@ for (n in PUFA_LIST) {
       width=1200, height=700,type="cairo")
   #manhattan(Trait1_final,chr='V1',bp="V2",snp='V3',p='p', main = n,col = c("grey", "skyblue"), ylim = c(0, 200))
   manhattan(Trait1_final,chr='V1',bp="V2",snp='V3',p='p', main = n,col = c("grey", "skyblue"))
+  dev.off()
+}
+
+for (n in PUFA_LIST) {
+  Trait1_final_infile=paste(Pathway_geno,"LockeAE_",n,".txt", sep="")
+  
+  Trait1_final <- read.table(Trait1_final_infile,header=T, as.is=T,sep = "\t")
+  print(summary(Trait1_final$CALLRATE))
+  
+  Trait1_final$SNP=sapply(strsplit(Trait1_final$MARKER_ID, split= "_", fixed=TRUE),"[",3)
+  Trait1_final$SNP1=sapply(strsplit(Trait1_final$MARKER_ID, split= "_", fixed=TRUE),"[",4)
+  Trait1_final$SNP=ifelse(is.na(Trait1_final$SNP1)==F,paste(Trait1_final$SNP,Trait1_final$SNP1,sep = ":"),Trait1_final$SNP)
+  Trait1_final$SNP2=sapply(strsplit(Trait1_final$MARKER_ID, split= "_", fixed=TRUE),"[",5)
+  Trait1_final$SNP=ifelse(is.na(Trait1_final$SNP2)==F,paste(Trait1_final$SNP,Trait1_final$SNP2,sep = ":"),Trait1_final$SNP)
+  Trait1_final$SNP3=sapply(strsplit(Trait1_final$MARKER_ID, split= "_", fixed=TRUE),"[",6)
+  Trait1_final$SNP=ifelse(is.na(Trait1_final$SNP3)==F,paste(Trait1_final$SNP,Trait1_final$SNP3,sep = "/"),Trait1_final$SNP)
+  
+  Trait1_final$CHROM[Trait1_final$CHROM == "X"] <- 23
+  print(table(Trait1_final$CHROM))
+  Trait1_final$CHROM=as.numeric(Trait1_final$CHROM)
+  
+  Trait1_final$ALLELE=sapply(strsplit(Trait1_final$MARKER_ID, split= "_", fixed=TRUE),"[",2)
+  Trait1_final$NonRefAllele=sapply(strsplit(Trait1_final$ALLELE, split= "/", fixed=TRUE),"[",2)
+  Trait1_final$RefAllele=sapply(strsplit(Trait1_final$ALLELE, split= "/", fixed=TRUE),"[",2)
+  
+  
+  print(table(sapply(strsplit(Trait1_final$MARKER_ID, split= "_", fixed=TRUE),"[",7)))
+  
+  print(summary(Trait1_final$END-Trait1_final$BEG))
+        
+  print(str(Trait1_final))
+  
+  print(min(Trait1_final$PVALUE))
+  
+  # Outputfile2=paste(Pathway_out,"met-d-",n,".jpeg", sep="")
+  # #pdf(file=Outputfile2, paper="a4r",width=0, height=0)
+  # jpeg(file=Outputfile2,width=1200, height=700,type="cairo")
+  # #manhattan(Trait1_final,chr='V1',bp="V2",snp='V3',p='p', main = n,col = c("grey", "skyblue"), ylim = c(0, 200))
+  # manhattan(Trait1_final,chr='V1',bp="V2",snp='V3',p='p', main = n,col = c("grey", "skyblue"))
+  # #manp <- manhattan(Trait1_final,chr='V1',bp="V2",snp='V3',p='p',annotatePval = 0.0000001, main = n,col = c("brewer.set3"))
+  # 
+  # #manp <-manhattan(Trait1_final,chr='V1',bp="V2",snp='V3',p='p', main = n,col = c("grey", "skyblue"))
+  # #Outputfile1=paste(Pathway_out,"met-d-",n,"_ggsave.pdf", sep="")
+  # #ggsave(manp, file=Outputfile1)
+  # dev.off()
+  # 
+  Outputfile3=paste(Pathway_out,"LockeAE_",n,".png", sep="")
+  png(file=Outputfile3,
+      width=1200, height=700,type="cairo")
+  #manhattan(Trait1_final,chr='V1',bp="V2",snp='V3',p='p', main = n,col = c("grey", "skyblue"), ylim = c(0, 200))
+  manhattan(Trait1_final,chr='CHROM',bp="BEG",snp='SNP',p='PVALUE', main = n,col = c("grey", "skyblue"))
   dev.off()
 }
