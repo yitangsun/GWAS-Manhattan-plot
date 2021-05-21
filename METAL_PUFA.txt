@@ -14,6 +14,9 @@ ALLELE NonRefAllele RefAllele
 EFFECT BETA
 PVALUE PVALUE 
 WEIGHT NS
+#SCHEME STDERR
+#STDERR SEBETA
+
 ######CHANGE!
 PROCESS /scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/Locke_DHA.txt
 
@@ -23,6 +26,9 @@ ALLELE V4 V5
 EFFECT BETA
 PVALUE p
 WEIGHT NS
+#SCHEME STDERR
+#STDERR SEBETA
+
 ######CHANGE!
 PROCESS /scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/UKB_DHA.txt
 
