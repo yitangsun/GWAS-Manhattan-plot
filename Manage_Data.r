@@ -60,6 +60,8 @@ for (n in PUFA_LIST) {
   
   Trait1_final$V3=ifelse(Trait1_final$V3==".",paste(Trait1_final$V1,":",Trait1_final$V2,":",Trait1_final$V4,"/",Trait1_final$V5,sep = ""),Trait1_final$V3)
   
+  Trait1_final$NS=115078
+  
   
   print(str(Trait1_final))
   print(summary(Trait1_final$lp))
@@ -109,8 +111,6 @@ for (n in PUFA_LIST) {
   Trait1_final$ALLELE=sapply(strsplit(Trait1_final$MARKER_ID, split= "_", fixed=TRUE),"[",2)
   Trait1_final$NonRefAllele=sapply(strsplit(Trait1_final$ALLELE, split= "/", fixed=TRUE),"[",2)
   Trait1_final$RefAllele=sapply(strsplit(Trait1_final$ALLELE, split= "/", fixed=TRUE),"[",1)
-  
-  Trait1_final$NS=115078
   
   
   print(table(sapply(strsplit(Trait1_final$MARKER_ID, split= "_", fixed=TRUE),"[",7)))
