@@ -96,4 +96,62 @@ for (n in PUFA_LIST) {
   write.table(Final_1, file= Outputfile1, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
 }
 
-                  
+
+for (n in PUFA_LIST) {
+  Trait_final_infile=paste(Pathway_out,"META_IVW_",n,"1.txt", sep="")
+  Trait_final <- read.table(Trait_final_infile,header=T, as.is=T,sep = "\t")
+  
+  names(Trait_final)[names(Trait_final) == "MarkerName"] <- "SNP"
+  names(Trait_final)[names(Trait_final) == "P.value"] <- "Trait_pvalue"
+  
+  Outputfile2=paste(Pathway_out,"UKB_",n, ".txt", sep="")
+  Trait_final2 <- read.table(Outputfile2,header=T, as.is=T,sep = "\t")
+  
+  names(Trait_final2)[names(Trait_final2) == "V3"] <- "SNP"
+  names(Trait_final2)[names(Trait_final2) == "NS"] <- "NS1"
+  
+  Trait_final<- Trait_final %>% left_join(Trait_final2, by= "SNP")
+  
+  Outputfile1=paste(Pathway_out,"Locke_",n, ".txt", sep="")
+  Trait_final1 <- read.table(Outputfile1,header=T, as.is=T,sep = "\t")
+  names(Trait_final1)[names(Trait_final1) == "NS"] <- "NS2"
+  
+  Trait_final<- Trait_final %>% left_join(Trait_final1, by= "SNP")
+  
+  print(str(Trait_final))
+  
+  # Trait_final$NS1[which(Trait_final$NS1 == "NULL")] <- 0 
+  # Trait_final$NS2[which(Trait_final$NS2 == "NULL")] <- 0 
+  Trait_final$NS1[is.na(Trait_final$NS1 == T)] <- 0 
+  Trait_final$NS2[is.na(Trait_final$NS2 == T)] <- 0 
+  #Trait_final1$NS2[which(Trait_final1$NS2 == "NULL")] <- 0 
+  #Trait_final1[is.na(Trait_final1$Final_NS2 == T)]$Final_NS2 <- 0 
+  Trait_final$Final_NS=Trait_final$NS1+Trait_final$NS2
+  
+  print(str(Trait_final))
+  
+  Trait_final$Final_chr=ifelse(Trait_final$Final_NS>115077,Trait_final$V1,Trait_final$CHROM)
+  Trait_final$Final_pos=ifelse(Trait_final$Final_NS>115077,Trait_final$V2,Trait_final$BEG)
+  
+  Outputfile=paste(Pathway_out,"Sta_",n, ".txt", sep="")
+  write.table(Trait_final, file= Outputfile, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
+  
+  Trait_final<-Trait_final%>%select(Final_chr,  Final_pos,SNP,Trait_pvalue,,Allele1,,Allele2,Effect,StdErr,Final_NS)
+  
+  Outputfile3=paste(Pathway_out,"Sum_sta_",n,".txt", sep="")
+  write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
+}
+
+#Pathway_out="/Users/yelab/GWAS/result_GWAS_05_19/"
+
+for (n in PUFA_LIST) {
+  Trait_final_infile=paste(Pathway_out,"Sum_sta_",n,".txt.gz", sep="")
+  Trait_final <- read.table(Trait_final_infile,header=T, as.is=T,sep = "\t")
+  
+  Trait_final$Final_chr[which(Trait_final$Final_chr == 23)] <- "X"
+  
+  Outputfile3=paste(Pathway_out,"Sum_sta_X_",n,".txt.gz", sep="")
+  write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
+}
+ 
+                 
