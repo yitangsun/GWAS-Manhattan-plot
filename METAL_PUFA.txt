@@ -14,11 +14,10 @@ ALLELE NonRefAllele RefAllele
 EFFECT BETA
 PVALUE PVALUE 
 WEIGHT NS
-#SCHEME STDERR
-#STDERR SEBETA
-
+SCHEME STDERR
+STDERR SEBETA
 ######CHANGE!
-PROCESS /scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/Locke_DHA.txt
+PROCESS /scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/Locke_PUFA.txt
 
 # === DESCRIBE AND PROCESS THE FOURTH INPUT FILE ===
 MARKER V3
@@ -27,13 +26,13 @@ EFFECT BETA
 PVALUE p
 WEIGHT NS
 #SCHEME STDERR
-#STDERR SEBETA
-
+STDERR SEBETA
 ######CHANGE!
-PROCESS /scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/UKB_DHA.txt
+
+PROCESS /scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/UKB_PUFA.txt
 
 # === CARRY OUT AN INTERIM ANALYSIS OF THE FIRST FOUR FILES ===
-OUTFILE /scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/META_DHA .txt
+OUTFILE /scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/META_IVW_PUFA .txt
 ANALYZE 
 
 
