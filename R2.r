@@ -1,3 +1,4 @@
+
 library(qqman)
 library(qqplotr)
 library(RColorBrewer)
@@ -39,6 +40,11 @@ Old_Out_Geno_filename="_All_trait.csv"
 Trait_filename="All_Trait_IEU_GWAS.txt"
 
 #PUFA_LIST=c("PUFA","Omega_3","Omega_6","LA","DHA")
+#PUFA 0.0616931 0.09575667 
+#Omega_3 0.05280874 1.095328 
+#Omega_6 0.05295491 0.1137094 
+#LA 0.04952331 0.1052528 
+#DHA 0.03775332 5.49533 
 
 #######Change
 for (n in c("PUFA")) {
@@ -59,6 +65,14 @@ for (n in c("PUFA")) {
   
   Trait_final$Final_R2_SD=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/(a*a)
   
+  b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
+  Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
+  
+  print(n)
+  print(sum(Trait_final$Final_R2))
+  print(sum(Trait_final$Final_R2_SD))
+  print(sum(Trait_final$PVE))
+  
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
   Outputfile2=paste(Pathway_out,"GenomicRiskLoci_",n, ".txt", sep="")
@@ -69,6 +83,7 @@ for (n in c("PUFA")) {
   
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD))
+  print(sum(Trait_final2$PVE))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -97,6 +112,14 @@ for (n in c("Omega_3")) {
   
   Trait_final$Final_R2_SD=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/(a*a)
   
+  b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
+  Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
+  
+  print(n)
+  print(sum(Trait_final$Final_R2))
+  print(sum(Trait_final$Final_R2_SD))
+  print(sum(Trait_final$PVE))
+  
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
   Outputfile2=paste(Pathway_out,"GenomicRiskLoci_",n, ".txt", sep="")
@@ -107,6 +130,7 @@ for (n in c("Omega_3")) {
   
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD))
+  print(sum(Trait_final2$PVE))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -135,6 +159,14 @@ for (n in c("Omega_6")) {
   
   Trait_final$Final_R2_SD=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/(a*a)
   
+  b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
+  Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
+  
+  print(n)
+  print(sum(Trait_final$Final_R2))
+  print(sum(Trait_final$Final_R2_SD))
+  print(sum(Trait_final$PVE))
+  
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
   Outputfile2=paste(Pathway_out,"GenomicRiskLoci_",n, ".txt", sep="")
@@ -145,6 +177,7 @@ for (n in c("Omega_6")) {
   
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD))
+  print(sum(Trait_final2$PVE))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -172,6 +205,14 @@ for (n in c("LA")) {
   
   Trait_final$Final_R2_SD=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/(a*a)
   
+  b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
+  Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
+  
+  print(n)
+  print(sum(Trait_final$Final_R2))
+  print(sum(Trait_final$Final_R2_SD))
+  print(sum(Trait_final$PVE))
+  
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
   Outputfile2=paste(Pathway_out,"GenomicRiskLoci_",n, ".txt", sep="")
@@ -182,6 +223,7 @@ for (n in c("LA")) {
   
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD))
+  print(sum(Trait_final2$PVE))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -210,6 +252,14 @@ for (n in c("DHA")) {
   
   Trait_final$Final_R2_SD=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/(a*a)
   
+  b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
+  Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
+  
+  print(n)
+  print(sum(Trait_final$Final_R2))
+  print(sum(Trait_final$Final_R2_SD))
+  print(sum(Trait_final$PVE))
+  
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
   Outputfile2=paste(Pathway_out,"GenomicRiskLoci_",n, ".txt", sep="")
@@ -220,6 +270,7 @@ for (n in c("DHA")) {
   
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD))
+  print(sum(Trait_final2$PVE))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -228,5 +279,24 @@ for (n in c("DHA")) {
   write.table(Trait_final2, file= Outputfile4, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
 }
 
+PUFA_LIST=c("PUFA","Omega_3","Omega_6","LA","DHA")
+#PUFA 0.0616931 0.09575667 
+#Omega_3 0.05280874 1.095328 
+#Omega_6 0.05295491 0.1137094 
+#LA 0.04952331 0.1052528 
+#DHA 0.03775332 5.49533 
 
+#r2=2*Beta^2*EAF(1-EAF)
+#PUFA 0.0616931 
+#Omega_3 0.05280874 
+#Omega_6 0.05295491 
+#LA 0.04952331  
+#DHA 0.03775332 
+
+#r2=2*Beta^2*EAF(1-EAF)/SD
+#PUFA  0.09575667 
+#Omega_3  1.095328 
+#Omega_6  0.1137094 
+#LA  0.1052528 
+#DHA  5.49533 
 
