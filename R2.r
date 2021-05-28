@@ -300,3 +300,10 @@ PUFA_LIST=c("PUFA","Omega_3","Omega_6","LA","DHA")
 #LA  0.1052528 
 #DHA  5.49533 
 
+
+#r2=2*Beta^2*EAF(1-EAF)/(2*Beta^2*EAF(1-EAF)+SE^2*2*N*EAF(1-EAF))
+#PUFA  0.0655968 
+#Omega_3  0.0544071 
+#Omega_6  0.0559526 
+#LA  0.05189069 
+#DHA  0.0404109 
