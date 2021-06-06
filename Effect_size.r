@@ -28,11 +28,580 @@ library(genpwr)
 
 #Pathway_out="/scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/"
 
-pw <- genpwr.calc(calc = "power", model = "logistic", ge.interaction = NULL,
-                  N=400, Case.Rate=0.2, k=NULL,
-                  MAF=seq(0.18, 0.25, 0.01), OR=c(3),Alpha=0.05,
-                  True.Model=c("Dominant", "Recessive", "Additive"), 
-                  Test.Model=c("Dominant", "Recessive", "Additive", "2df"))
+########## Check the accuracy
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=4763, ES_GE=0.24517,
+                  ES_G=0, ES_E=0.15,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 3.71, sd_e = 1, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=1936, ES_GE=0.38373,
+                  ES_G=0, ES_E=0.15,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 3.71, sd_e = 1, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=5849, ES_GE=0.22131,
+                  ES_G=0, ES_E=0.15,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 3.71, sd_e = 1, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+#### Proposal
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.00081600,
+                  ES_G=0, ES_E=0.1,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001,
+                  ES_G=0.05, ES_E=0.5,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.000810031,
+                  ES_G=0.1, ES_E=0.1,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0014559,
+                  ES_G=0, ES_E=0.05,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0016180,
+                  ES_G=0, ES_E=0,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0012791,
+                  ES_G=1, ES_E=0,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0016149,
+                  ES_G=0.1, ES_E=0,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0014526,
+                  ES_G=0.1, ES_E=0.05,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0016172,
+                  ES_G=0.05, ES_E=0,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0014551,
+                  ES_G=0.05, ES_E=0.05,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.00081451,
+                  ES_G=0.05, ES_E=0.1,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+
+###### Group 1
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0050614,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.005,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0035859,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.01,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0016328,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.05,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.0011837,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.1,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.00099272,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.15,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.00088474,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.2,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.000815997,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.25,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.00076983,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.3,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.00073844,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.35,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.00071774,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.4,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.000705507,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.45,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                  N=108099, ES_GE=0.000700603,
+                  ES_G=0, ES_E=0.1, 
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1, sd_e = 8.6, MAF=0.5,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+###### Group 2
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                  N=108099, ES_GE=0.186202,
+                  ES_G=0, ES_E=0.1, P_e=0.3,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1,  MAF=0.005,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                  N=108099, ES_GE=0.131995,
+                  ES_G=0, ES_E=0.1, P_e=0.3,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1,  MAF=0.01,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                  N=108099, ES_GE=0.060256,
+                  ES_G=0, ES_E=0.1, P_e=0.3,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1,  MAF=0.05,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                  N=108099, ES_GE=0.043772,
+                  ES_G=0, ES_E=0.1, P_e=0.3,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1,  MAF=0.1,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                  N=108099, ES_GE=0.036774,
+                  ES_G=0, ES_E=0.1, P_e=0.3,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1,  MAF=0.15,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+
+pw <- genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                  N=108099, ES_GE=0.032826,
+                  ES_G=0, ES_E=0.1, P_e=0.3,
+                  #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                  sd_y= 1,  MAF=0.2,  Alpha=0.05,
+                  True.Model="Additive", Test.Model=c("Additive"))
+
+pw
+
+
+
+library(tidyverse)
+library(ggrepel)
+# Set ggplot2 default theme to theme_bw()
+theme_set(theme_bw())
+
+df <- tibble::tribble(
+  ~MAF, ~Group_1, ~Group_2,
+  "0.5%",         0.0050614,        0.186202,       
+  "1%",          0.0035859,        0.131995,        
+  "5%",         0.0016328,        0.060256,         
+  "10%",         0.0011837,        0.043772,        
+  "15%",          0.00099272,        0.036774,         
+  "20%",         0.00088474,        0.032826,        
+  "25%",         0.000815997,        0.030322,        
+  "30%",          0.00076983,        0.0286495,       
+  "35%",         0.00073844,        0.027525,         
+  "40%",         0.00071774,        0.026797,       
+  "45%",         0.000705507,        0.026386,         
+  "50%",          0.000700603,        0.026252
+)
+df
+
+df_long <- df %>%
+  pivot_longer(
+    Group_1:Group_2,
+    names_to = "Group", values_to = "MES"
+  )
+df_long
+
+# df_long$MAF <- factor(df_long$MAF, levels = df_long$MAF)
+# df_long$MAF <- factor(df_long$MAF, levels =df_long$MAF[order(df_long$MAF)])
+
+df_long <- df_long %>% mutate(row = row_number())
+
+Pathway_out="/scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/"
+Outputfile3=paste(Pathway_out,"G_E_ES.png", sep="")
+#png(file=Outputfile3,width=1200, height=700,type="cairo")
+
+png(file=Outputfile3,width     = 3.25,
+    height    = 3.25,
+    units     = "in",
+    res       = 1200,
+    pointsize = 4,type="cairo")
+lp <- ggplot(df_long, aes(x=reorder(MAF,row), y = MES, group = Group)) +  ylab("Minimum Effect Size")+
+  geom_line(aes(color = Group), lwd=1.5) +
+  geom_point() +theme(axis.text.x = element_text(colour = 'black', angle = 90, size = 10, hjust = 0.5, vjust = 0.5),axis.title.x=element_blank()) +
+  theme(legend.position = c(0.8,0.79), axis.text=element_text(size=10),
+        legend.title=element_text(size=0), 
+        legend.text=element_text(size=10))
+
+# Filter the last values and add onto the line plot
+# Corresponds to the `virginica` species
+data_ends <- df_long %>% filter(MAF == "virginica")
+lp + 
+  geom_text_repel(
+    aes(label = MES), data = data_ends,
+    fontface ="plain", color = "black", size = 3
+  )
+dev.off()
+
+
+
+for (maf in c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5)) {
+  var_num <- 0
+  while (genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                     N=108099, ES_GE=var_num,
+                     ES_G=0, ES_E=0.1, P_e=0.3,
+                     #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                     sd_y= 1,  MAF=maf,  Alpha=0.05,
+                     True.Model="Additive", Test.Model=c("Additive"))$Power_at_Alpha_0.05 < 0.8) {
+    var_num = var_num+0.000001
+  }
+  print(genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                    N=108099, ES_GE=var_num,
+                    ES_G=0, ES_E=0.1, P_e=0.3,
+                    #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                    sd_y= 1,  MAF=maf,  Alpha=0.05,
+                    True.Model="Additive", Test.Model=c("Additive")))
+}
+
+
+
+
+###### Group 2 5e-8
+for (maf in c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5)) {
+  var_num <- 0.000001
+  pw=genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                 N=108099, ES_GE=var_num,
+                 ES_G=0, ES_E=0.1, P_e=0.3,
+                 #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                 sd_y= 1,  MAF=maf,  Alpha=5e-8,
+                 True.Model="Additive", Test.Model=c("Additive"))
+  names(pw)[13] <- "Power"
+  while (pw$Power < 0.8) {
+    var_num = var_num+0.000001
+    pw=genpwr.calc(calc = "power", model = "linear", ge.interaction = "binary",
+                   N=108099, ES_GE=var_num,
+                   ES_G=0, ES_E=0.1, P_e=0.3,
+                   #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                   sd_y= 1,  MAF=maf,  Alpha=5e-8,
+                   True.Model="Additive", Test.Model=c("Additive"))
+    names(pw)[13] <- "Power"
+  }
+  print(pw)
+}
+
+###### Group 1 5e-8
+for (maf in c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5)) {
+  var_num <- 0.0000001
+  pw=genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                 N=108099, ES_GE=var_num,
+                 ES_G=0, ES_E=0.1, 
+                 #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                 sd_y= 1, sd_e = 8.6, MAF=maf,  Alpha=5e-8,
+                 True.Model="Additive", Test.Model=c("Additive"))
+  names(pw)[13] <- "Power"
+  while (pw$Power < 0.8) {
+    var_num = var_num+0.0000001
+    pw=genpwr.calc(calc = "power", model = "linear", ge.interaction = "continuous",
+                   N=108099, ES_GE=var_num,
+                   ES_G=0, ES_E=0.1, 
+                   #OR_GE=c(1.5, 2),Case.Rate = 0.3,Power=0.8, P_e=0.15,
+                   sd_y= 1, sd_e = 8.6, MAF=maf,  Alpha=5e-8,
+                   True.Model="Additive", Test.Model=c("Additive"))
+    names(pw)[13] <- "Power"
+  }
+  print(pw)
+}
+
+library(tidyverse)
+library(ggrepel)
+# Set ggplot2 default theme to theme_bw()
+theme_set(theme_bw())
+
+df <- tibble::tribble(
+  ~MAF, ~Group_1, ~Group_2,
+  "0.5%",         0.0113477,        0.418169,       
+  "1%",          0.0080334,        0.296425,        
+  "5%",         0.003646,        0.135304,         
+  "10%",         0.0026362,        0.098281,        
+  "15%",          0.0022061,        0.082562,         
+  "20%",         0.0019621,        0.073692,        
+  "25%",         0.0018061,        0.068065,        
+  "30%",          0.0017005,        0.064307,       
+  "35%",         0.0016279,        0.061776,         
+  "40%",         0.0015789,        0.060137,       
+  "45%",         0.0015485,        0.059209,         
+  "50%",          0.0015339,        0.058901
+)
+df
+
+df_long <- df %>%
+  pivot_longer(
+    Group_1:Group_2,
+    names_to = "Group", values_to = "MES"
+  )
+df_long
+
+# df_long$MAF <- factor(df_long$MAF, levels = df_long$MAF)
+# df_long$MAF <- factor(df_long$MAF, levels =df_long$MAF[order(df_long$MAF)])
+
+df_long <- df_long %>% mutate(row = row_number())
+
+Pathway_out="/scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/"
+Outputfile3=paste(Pathway_out,"G_E_5e8_ES.png", sep="")
+#png(file=Outputfile3,width=1200, height=700,type="cairo")
+
+png(file=Outputfile3,width     = 3.25,
+    height    = 3.25,
+    units     = "in",
+    res       = 1200,
+    pointsize = 4,type="cairo")
+lp <- ggplot(df_long, aes(x=reorder(MAF,row), y = MES, group = Group)) +  ylab("Minimum Effect Size")+
+  geom_line(aes(color = Group), lwd=1.5) +
+  geom_point() +theme(axis.text.x = element_text(colour = 'black', angle = 90, size = 10, hjust = 0.5, vjust = 0.5),axis.title.x=element_blank()) +
+  theme(legend.position = c(0.8,0.79), axis.text=element_text(size=10),
+        legend.title=element_text(size=0), 
+        legend.text=element_text(size=10))
+
+# Filter the last values and add onto the line plot
+# Corresponds to the `virginica` species
+data_ends <- df_long %>% filter(MAF == "virginica")
+lp + 
+  geom_text_repel(
+    aes(label = MES), data = data_ends,
+    fontface ="plain", color = "black", size = 3
+  )
+dev.off()
+
+
+#SD = 1
+es1 <- es.calc.linear(N=13544,power=0.8,
+                      MAF=c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), sd_y = 1, Alpha=5e-8,
+                      True.Model='Additive', Test.Model='Additive')
+es1
+es2 <- es.calc.linear(N=19037,power=0.8,
+                      MAF=c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), sd_y = 1, Alpha=5e-8,
+                      True.Model='Additive', Test.Model='Additive')
+es2
+es3 <- es.calc.linear(N=22295,power=0.8,
+                      MAF=c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), sd_y = 1, Alpha=5e-8,
+                      True.Model='Additive', Test.Model='Additive')
+es3
+es4 <- es.calc.linear(N=19037,power=0.8,
+                      MAF=c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), sd_y = 1, Alpha=0.05,
+                      True.Model='Additive', Test.Model='Additive')
+es4
+es5 <- es.calc.linear(N=22295,power=0.8,
+                      MAF=c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), sd_y = 1, Alpha=0.05,
+                      True.Model='Additive', Test.Model='Additive')
+es5
+es6 <- es.calc.linear(N=108099,power=0.8,
+                      MAF=c(0.005,0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), sd_y = 1, Alpha=5e-8,
+                      True.Model='Additive', Test.Model='Additive')
+es6
+
+library(tidyverse)
+library(ggrepel)
+# Set ggplot2 default theme to theme_bw()
+theme_set(theme_bw())
+
+df <- tibble::tribble(
+  ~MAF, ~Group_1, ~Group_2, ~Group_3, ~Group_4,~Group_5,~Group_6,
+  "0.5%",         0.54169,        0.457,         0.42232,        0.20354,   0.18808,        0.19186,
+  "1%",          0.384,        0.32396,         0.29938,         0.14429,    0.13333,         0.13601,
+  "5%",         0.17531,        0.14788,         0.13668,        0.06585,        0.06086,        0.06208,
+  "10%",         0.12739,        0.10747,         0.09927,        0.04788,        0.04425,        0.04514,
+  "15%",          0.10699,        0.09029,         0.08345,         0.04022,        0.03717,         0.03792,
+  "20%",         0.09552,        0.08058,         0.07445,        0.03589,        0.03317,        0.03384,
+  "25%",         0.08823,        0.07442,         0.06877,        0.03316,      0.03064,        0.03126,
+  "30%",          0.08337,        0.07032,         0.06503,         0.03133,         0.02896,         0.02954,
+  "35%",         0.08009,        0.06755,         0.06247,        0.03011,    0.02782,        0.02838,
+  "40%",         0.07798,        0.06582,         0.06082,        0.02931,      0.02709,        0.02763,
+  "45%",         0.07679,        0.06482,         0.0599,        0.02887,     0.02668,        0.02721,
+  "50%",          0.0764,        0.06448,         0.0596,         0.02872,        0.02654,         0.02708
+)
+df
+
+df_long <- df %>%
+  pivot_longer(
+    Group_1:Group_2:Group_3:Group_4:Group_5:Group_6,
+    names_to = "Group", values_to = "MES"
+  )
+df_long
+
+# df_long$MAF <- factor(df_long$MAF, levels = df_long$MAF)
+# df_long$MAF <- factor(df_long$MAF, levels =df_long$MAF[order(df_long$MAF)])
+
+df_long <- df_long %>% mutate(row = row_number())
+
+Pathway_out="/scratch/ys98038/UKB/plink2_format/COVID_19/Analyses/MR_result/result_GWAS_05_19/"
+Outputfile3=paste(Pathway_out,"SD_1_ES.png", sep="")
+#png(file=Outputfile3,width=1200, height=700,type="cairo")
+
+png(file=Outputfile3,width     = 3.25,
+    height    = 3.25,
+    units     = "in",
+    res       = 1200,
+    pointsize = 4,type="cairo")
+lp <- ggplot(df_long, aes(x=reorder(MAF,row), y = MES, group = Group)) +  ylab("Minimum Effect Size")+
+  geom_line(aes(color = Group), lwd=1.5) +
+  geom_point() +theme(axis.text.x = element_text(colour = 'black', angle = 90, size = 10, hjust = 0.5, vjust = 0.5),axis.title.x=element_blank()) +
+  theme(legend.position = c(0.8,0.79), axis.text=element_text(size=10),
+        legend.title=element_text(size=0), 
+        legend.text=element_text(size=10))
+
+# Filter the last values and add onto the line plot
+# Corresponds to the `virginica` species
+data_ends <- df_long %>% filter(MAF == "virginica")
+lp + 
+  geom_text_repel(
+    aes(label = MES), data = data_ends,
+    fontface ="plain", color = "black", size = 3
+  )
+dev.off()
+
 
 #PUFA 0.802664 Omega_3 0.219574 Omega_6 0.682425 LA 0.685943 DHA 0.0828859
 #LA 0.685943 DHA 0.0828859
