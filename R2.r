@@ -69,11 +69,14 @@ for (n in c("PUFA")) {
   b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
   Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
   
+  Trait_final$Genpwr=(Trait_final$Effect^2) * ((1^2)*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+(2^2)*(Trait_final$Final_EAF^2)-(1*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+2*(Trait_final$Final_EAF^2))^2)/ (a^2)
+  
   print(n)
   print(sum(Trait_final$Final_R2))
   print(sum(Trait_final$Final_R2_SD_2))
   print(sum(Trait_final$Final_R2_SD))
   print(sum(Trait_final$PVE))
+  print(sum(Trait_final$Genpwr))
   
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
@@ -83,30 +86,36 @@ for (n in c("PUFA")) {
   Trait_final2<- Trait_final %>% right_join(Trait_final2, by= "rsID")
   print(str(Trait_final2))
   
+  print("GenomicRiskLoci_")
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD_2))
   print(sum(Trait_final2$Final_R2_SD))
   print(sum(Trait_final2$PVE))
+  print(sum(Trait_final2$Genpwr))
   
   Outputfile4=paste(Pathway_out,"leadSNPs_",n, ".txt", sep="")
   Trait_final4 <- read.table(Outputfile4,header=T, as.is=T,sep = "\t")
   
   Trait_final4<- Trait_final %>% right_join(Trait_final4, by= "rsID")
   
+  print("leadSNPs_")
   print(sum(Trait_final4$Final_R2))
   print(sum(Trait_final4$Final_R2_SD_2))
   print(sum(Trait_final4$Final_R2_SD))
   print(sum(Trait_final4$PVE))
+  print(sum(Trait_final4$Genpwr))
   
   Outputfile5=paste(Pathway_out,"IndSigSNPs_",n, ".txt", sep="")
   Trait_final5 <- read.table(Outputfile5,header=T, as.is=T,sep = "\t")
   
   Trait_final5<- Trait_final %>% right_join(Trait_final5, by= "rsID")
   
+  print("IndSigSNPs_")
   print(sum(Trait_final5$Final_R2))
   print(sum(Trait_final5$Final_R2_SD_2))
   print(sum(Trait_final5$Final_R2_SD))
   print(sum(Trait_final5$PVE))
+  print(sum(Trait_final5$Genpwr))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -139,11 +148,14 @@ for (n in c("Omega_3")) {
   b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
   Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
   
+  Trait_final$Genpwr=(Trait_final$Effect^2) * ((1^2)*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+(2^2)*(Trait_final$Final_EAF^2)-(1*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+2*(Trait_final$Final_EAF^2))^2)/ (a^2)
+  
   print(n)
   print(sum(Trait_final$Final_R2))
   print(sum(Trait_final$Final_R2_SD_2))
   print(sum(Trait_final$Final_R2_SD))
   print(sum(Trait_final$PVE))
+  print(sum(Trait_final$Genpwr))
   
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
@@ -153,30 +165,36 @@ for (n in c("Omega_3")) {
   Trait_final2<- Trait_final %>% right_join(Trait_final2, by= "rsID")
   print(str(Trait_final2))
   
+  print("GenomicRiskLoci_")
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD_2))
   print(sum(Trait_final2$Final_R2_SD))
   print(sum(Trait_final2$PVE))
+  print(sum(Trait_final2$Genpwr))
   
   Outputfile4=paste(Pathway_out,"leadSNPs_",n, ".txt", sep="")
   Trait_final4 <- read.table(Outputfile4,header=T, as.is=T,sep = "\t")
   
   Trait_final4<- Trait_final %>% right_join(Trait_final4, by= "rsID")
   
+  print("leadSNPs_")
   print(sum(Trait_final4$Final_R2))
   print(sum(Trait_final4$Final_R2_SD_2))
   print(sum(Trait_final4$Final_R2_SD))
   print(sum(Trait_final4$PVE))
+  print(sum(Trait_final4$Genpwr))
   
   Outputfile5=paste(Pathway_out,"IndSigSNPs_",n, ".txt", sep="")
   Trait_final5 <- read.table(Outputfile5,header=T, as.is=T,sep = "\t")
   
   Trait_final5<- Trait_final %>% right_join(Trait_final5, by= "rsID")
   
+  print("IndSigSNPs_")
   print(sum(Trait_final5$Final_R2))
   print(sum(Trait_final5$Final_R2_SD_2))
   print(sum(Trait_final5$Final_R2_SD))
   print(sum(Trait_final5$PVE))
+  print(sum(Trait_final5$Genpwr))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -184,6 +202,7 @@ for (n in c("Omega_3")) {
   Outputfile4=paste(Pathway_out,"GenomicRiskLoci_R2_",n, ".txt", sep="")
   write.table(Trait_final2, file= Outputfile4, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
 }
+
 
 
 #######Change
@@ -209,11 +228,14 @@ for (n in c("Omega_6")) {
   b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
   Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
   
+  Trait_final$Genpwr=(Trait_final$Effect^2) * ((1^2)*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+(2^2)*(Trait_final$Final_EAF^2)-(1*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+2*(Trait_final$Final_EAF^2))^2)/ (a^2)
+  
   print(n)
   print(sum(Trait_final$Final_R2))
   print(sum(Trait_final$Final_R2_SD_2))
   print(sum(Trait_final$Final_R2_SD))
   print(sum(Trait_final$PVE))
+  print(sum(Trait_final$Genpwr))
   
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
@@ -223,30 +245,36 @@ for (n in c("Omega_6")) {
   Trait_final2<- Trait_final %>% right_join(Trait_final2, by= "rsID")
   print(str(Trait_final2))
   
+  print("GenomicRiskLoci_")
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD_2))
   print(sum(Trait_final2$Final_R2_SD))
   print(sum(Trait_final2$PVE))
+  print(sum(Trait_final2$Genpwr))
   
   Outputfile4=paste(Pathway_out,"leadSNPs_",n, ".txt", sep="")
   Trait_final4 <- read.table(Outputfile4,header=T, as.is=T,sep = "\t")
   
   Trait_final4<- Trait_final %>% right_join(Trait_final4, by= "rsID")
   
+  print("leadSNPs_")
   print(sum(Trait_final4$Final_R2))
   print(sum(Trait_final4$Final_R2_SD_2))
   print(sum(Trait_final4$Final_R2_SD))
   print(sum(Trait_final4$PVE))
+  print(sum(Trait_final4$Genpwr))
   
   Outputfile5=paste(Pathway_out,"IndSigSNPs_",n, ".txt", sep="")
   Trait_final5 <- read.table(Outputfile5,header=T, as.is=T,sep = "\t")
   
   Trait_final5<- Trait_final %>% right_join(Trait_final5, by= "rsID")
   
+  print("IndSigSNPs_")
   print(sum(Trait_final5$Final_R2))
   print(sum(Trait_final5$Final_R2_SD_2))
   print(sum(Trait_final5$Final_R2_SD))
   print(sum(Trait_final5$PVE))
+  print(sum(Trait_final5$Genpwr))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -254,6 +282,7 @@ for (n in c("Omega_6")) {
   Outputfile4=paste(Pathway_out,"GenomicRiskLoci_R2_",n, ".txt", sep="")
   write.table(Trait_final2, file= Outputfile4, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
 }
+
 
 #######Change
 for (n in c("LA")) {
@@ -278,11 +307,14 @@ for (n in c("LA")) {
   b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
   Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
   
+  Trait_final$Genpwr=(Trait_final$Effect^2) * ((1^2)*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+(2^2)*(Trait_final$Final_EAF^2)-(1*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+2*(Trait_final$Final_EAF^2))^2)/ (a^2)
+  
   print(n)
   print(sum(Trait_final$Final_R2))
   print(sum(Trait_final$Final_R2_SD_2))
   print(sum(Trait_final$Final_R2_SD))
   print(sum(Trait_final$PVE))
+  print(sum(Trait_final$Genpwr))
   
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
@@ -292,30 +324,36 @@ for (n in c("LA")) {
   Trait_final2<- Trait_final %>% right_join(Trait_final2, by= "rsID")
   print(str(Trait_final2))
   
+  print("GenomicRiskLoci_")
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD_2))
   print(sum(Trait_final2$Final_R2_SD))
   print(sum(Trait_final2$PVE))
+  print(sum(Trait_final2$Genpwr))
   
   Outputfile4=paste(Pathway_out,"leadSNPs_",n, ".txt", sep="")
   Trait_final4 <- read.table(Outputfile4,header=T, as.is=T,sep = "\t")
   
   Trait_final4<- Trait_final %>% right_join(Trait_final4, by= "rsID")
   
+  print("leadSNPs_")
   print(sum(Trait_final4$Final_R2))
   print(sum(Trait_final4$Final_R2_SD_2))
   print(sum(Trait_final4$Final_R2_SD))
   print(sum(Trait_final4$PVE))
+  print(sum(Trait_final4$Genpwr))
   
   Outputfile5=paste(Pathway_out,"IndSigSNPs_",n, ".txt", sep="")
   Trait_final5 <- read.table(Outputfile5,header=T, as.is=T,sep = "\t")
   
   Trait_final5<- Trait_final %>% right_join(Trait_final5, by= "rsID")
   
+  print("IndSigSNPs_")
   print(sum(Trait_final5$Final_R2))
   print(sum(Trait_final5$Final_R2_SD_2))
   print(sum(Trait_final5$Final_R2_SD))
   print(sum(Trait_final5$PVE))
+  print(sum(Trait_final5$Genpwr))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -323,6 +361,7 @@ for (n in c("LA")) {
   Outputfile4=paste(Pathway_out,"GenomicRiskLoci_R2_",n, ".txt", sep="")
   write.table(Trait_final2, file= Outputfile4, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
 }
+
 
 
 #######Change
@@ -348,11 +387,14 @@ for (n in c("DHA")) {
   b=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)+(Trait_final$StdErr)*(Trait_final$StdErr)*2*Trait_final$Final_NS*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)
   Trait_final$PVE=2*(Trait_final$Effect)*(Trait_final$Effect)*(Trait_final$Final_EAF)*(1-Trait_final$Final_EAF)/b
   
+  Trait_final$Genpwr=(Trait_final$Effect^2) * ((1^2)*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+(2^2)*(Trait_final$Final_EAF^2)-(1*(2*Trait_final$Final_EAF*(1-Trait_final$Final_EAF))+2*(Trait_final$Final_EAF^2))^2)/ (a^2)
+  
   print(n)
   print(sum(Trait_final$Final_R2))
   print(sum(Trait_final$Final_R2_SD_2))
   print(sum(Trait_final$Final_R2_SD))
   print(sum(Trait_final$PVE))
+  print(sum(Trait_final$Genpwr))
   
   names(Trait_final)[names(Trait_final) == "SNP"] <- "rsID"
   
@@ -362,30 +404,36 @@ for (n in c("DHA")) {
   Trait_final2<- Trait_final %>% right_join(Trait_final2, by= "rsID")
   print(str(Trait_final2))
   
+  print("GenomicRiskLoci_")
   print(sum(Trait_final2$Final_R2))
   print(sum(Trait_final2$Final_R2_SD_2))
   print(sum(Trait_final2$Final_R2_SD))
   print(sum(Trait_final2$PVE))
+  print(sum(Trait_final2$Genpwr))
   
   Outputfile4=paste(Pathway_out,"leadSNPs_",n, ".txt", sep="")
   Trait_final4 <- read.table(Outputfile4,header=T, as.is=T,sep = "\t")
   
   Trait_final4<- Trait_final %>% right_join(Trait_final4, by= "rsID")
   
+  print("leadSNPs_")
   print(sum(Trait_final4$Final_R2))
   print(sum(Trait_final4$Final_R2_SD_2))
   print(sum(Trait_final4$Final_R2_SD))
   print(sum(Trait_final4$PVE))
+  print(sum(Trait_final4$Genpwr))
   
   Outputfile5=paste(Pathway_out,"IndSigSNPs_",n, ".txt", sep="")
   Trait_final5 <- read.table(Outputfile5,header=T, as.is=T,sep = "\t")
   
   Trait_final5<- Trait_final %>% right_join(Trait_final5, by= "rsID")
   
+  print("IndSigSNPs_")
   print(sum(Trait_final5$Final_R2))
   print(sum(Trait_final5$Final_R2_SD_2))
   print(sum(Trait_final5$Final_R2_SD))
   print(sum(Trait_final5$PVE))
+  print(sum(Trait_final5$Genpwr))
   
   Outputfile3=paste(Pathway_out,"R2_",n, ".txt", sep="")
   write.table(Trait_final, file= Outputfile3, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
@@ -393,6 +441,7 @@ for (n in c("DHA")) {
   Outputfile4=paste(Pathway_out,"GenomicRiskLoci_R2_",n, ".txt", sep="")
   write.table(Trait_final2, file= Outputfile4, col.names = T, append = TRUE, row.names = FALSE, quote = FALSE, sep='\t')
 }
+
 
 PUFA_LIST=c("PUFA","Omega_3","Omega_6","LA","DHA")
 
@@ -482,3 +531,9 @@ PUFA_LIST=c("PUFA","Omega_3","Omega_6","LA","DHA")
 #Omega_6  0.0559526 
 #LA  0.5354065 
 #DHA  0.5857837 
+
+
+##### 
+# Calculate var_x (genotype) to do effect size calculations
+# ((1^2)*(2*MAF*(1-MAF))+(2^2)*(MAF^2)-(1*(2*MAF*(1-MAF))+2*(MAF^2))^2)
+# ES^2 * ((1^2)*(2*MAF*(1-MAF))+(2^2)*(MAF^2)-(1*(2*MAF*(1-MAF))+2*(MAF^2))^2)/ sd_y^2
