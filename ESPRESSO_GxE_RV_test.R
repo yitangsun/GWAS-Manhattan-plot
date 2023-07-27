@@ -68,6 +68,9 @@ env.params_test <- env.params_test[,!names(env.params_test) %in% c("env.prevalen
                                                                       "env.low.lim","env.up.lim",
                                                                    "env.sensitivity","env.specificity")]
 
+yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test, env.params_test, scenarios2run=c(4))
+
+
 run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test, env.params_test, scenarios2run=c(4))
 
 str(simulation.params_test)
