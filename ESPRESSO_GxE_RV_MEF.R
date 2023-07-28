@@ -892,67 +892,91 @@ if (env.params_test$env.model[4]==0) {
         
         res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
                                        env.params_test, scenarios2run=c(4))
-        
         print(res)
+        res$interaction.efkt=as.numeric(res$interaction.efkt)
+        res$empirical.power=as.numeric(res$empirical.power)
         
         while (res$empirical.power < 0.8) {
           simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.1
           
           res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
                                          env.params_test, scenarios2run=c(4))
-          
           print(res)
           
+          res$interaction.efkt=as.numeric(res$interaction.efkt)
+          res$empirical.power=as.numeric(res$empirical.power)
         }
         
-        if (simulation.params_test$interaction.efkt[4] < 0.02) {
+        if (simulation.params_test$interaction.efkt[4] <= 0.1) {
           simulation.params_test$interaction.efkt[4]=0
-          
-          while (res$empirical.power < 0.8) {
-            simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.001
-            
-            res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                           env.params_test, scenarios2run=c(4))
-            
-            print(res)
-            
-          } 
-          
-          if (simulation.params_test$interaction.efkt[4] < 0.002) {
-            simulation.params_test$interaction.efkt[4]=0
-            
-            while (res$empirical.power < 0.8) {
-              simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.0001
-              
-              res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                             env.params_test, scenarios2run=c(4))
-              
-              print(res)
-              
-            } 
-          }
-        } else {
-          simulation.params_test$interaction.efkt[4]=simulation.params_test$interaction.efkt[4]-0.1
           
           while (res$empirical.power < 0.8) {
             simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.01
             
             res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
                                            env.params_test, scenarios2run=c(4))
-            
             print(res)
+            res$interaction.efkt=as.numeric(res$interaction.efkt)
+            res$empirical.power=as.numeric(res$empirical.power)
+          } 
+          
+          if (simulation.params_test$interaction.efkt[4] <= 0.01) {
+            simulation.params_test$interaction.efkt[4]=0
             
+            while (res$empirical.power < 0.8) {
+              simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] +  0.001
+              res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                             env.params_test, scenarios2run=c(4))
+              print(res)
+              res$interaction.efkt=as.numeric(res$interaction.efkt)
+              res$empirical.power=as.numeric(res$empirical.power)
+            } 
+            if (simulation.params_test$interaction.efkt[4] <= 0.001) {
+              simulation.params_test$interaction.efkt[4]=0
+              
+              while (res$empirical.power < 0.8) {
+                simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] +  0.0001
+                res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                               env.params_test, scenarios2run=c(4))
+                print(res)
+                res$interaction.efkt=as.numeric(res$interaction.efkt)
+                res$empirical.power=as.numeric(res$empirical.power)
+              } 
+              if (simulation.params_test$interaction.efkt[4] <= 0.001) {
+                simulation.params_test$interaction.efkt[4]=0
+                
+                while (res$empirical.power < 0.8) {
+                  simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] +  0.00001
+                  res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                                 env.params_test, scenarios2run=c(4))
+                  print(res)
+                  res$interaction.efkt=as.numeric(res$interaction.efkt)
+                  res$empirical.power=as.numeric(res$empirical.power)
+                } 
+              }
+            }
+          }
+        } else {
+          simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4]-0.1
+          
+          while (res$empirical.power < 0.8) {
+            simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.01
+            res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                           env.params_test, scenarios2run=c(4))
+            print(res)
+            res$interaction.efkt=as.numeric(res$interaction.efkt)
+            res$empirical.power=as.numeric(res$empirical.power)
           }
         }
         
         res=res %>% select(interaction.efkt,MAF,geno.nvariants,geno.frac_causal,empirical.power)
         
         print(res)
+        res$interaction.efkt=as.numeric(res$interaction.efkt)
+        res$empirical.power=as.numeric(res$empirical.power)
         
         write.table(res, file= paste(Pathway_out,"minimum_effect_size_",PUFA_name,".txt", sep=""), col.names = FALSE, append = TRUE,
                     row.names = F, quote = FALSE, na = "",sep='\t')
-        
-        print(res)
         
       }
     }
@@ -985,68 +1009,91 @@ if (env.params_test$env.model[4]==1) {
         
         res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
                                        env.params_test, scenarios2run=c(4))
-        
         print(res)
+        res$interaction.efkt=as.numeric(res$interaction.efkt)
+        res$empirical.power=as.numeric(res$empirical.power)
         
         while (res$empirical.power < 0.8) {
           simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.1
           
           res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
                                          env.params_test, scenarios2run=c(4))
-          
           print(res)
+          res$interaction.efkt=as.numeric(res$interaction.efkt)
+          res$empirical.power=as.numeric(res$empirical.power)
           
         }
         
-        if (simulation.params_test$interaction.efkt[4] < 0.02) {
+        if (simulation.params_test$interaction.efkt[4] <= 0.1) {
           simulation.params_test$interaction.efkt[4]=0
-          
-          while (res$empirical.power < 0.8) {
-            simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.001
-            
-            res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                           env.params_test, scenarios2run=c(4))
-            
-            print(res)
-            
-          } 
-          
-          if (simulation.params_test$interaction.efkt[4] < 0.002) {
-            simulation.params_test$interaction.efkt[4]=0
-            
-            while (res$empirical.power < 0.8) {
-              simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.0001
-              
-              res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                             env.params_test, scenarios2run=c(4))
-              
-              print(res)
-              
-            } 
-          }
-        } else {
-          simulation.params_test$interaction.efkt[4]=simulation.params_test$interaction.efkt[4]-0.1
           
           while (res$empirical.power < 0.8) {
             simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.01
             
             res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
                                            env.params_test, scenarios2run=c(4))
-            
             print(res)
+            res$interaction.efkt=as.numeric(res$interaction.efkt)
+            res$empirical.power=as.numeric(res$empirical.power)
+          } 
+          
+          if (simulation.params_test$interaction.efkt[4] <= 0.01) {
+            simulation.params_test$interaction.efkt[4]=0
             
+            while (res$empirical.power < 0.8) {
+              simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] +  0.001
+              res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                             env.params_test, scenarios2run=c(4))
+              print(res)
+              res$interaction.efkt=as.numeric(res$interaction.efkt)
+              res$empirical.power=as.numeric(res$empirical.power)
+            } 
+            if (simulation.params_test$interaction.efkt[4] <= 0.001) {
+              simulation.params_test$interaction.efkt[4]=0
+              
+              while (res$empirical.power < 0.8) {
+                simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] +  0.0001
+                res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                               env.params_test, scenarios2run=c(4))
+                print(res)
+                res$interaction.efkt=as.numeric(res$interaction.efkt)
+                res$empirical.power=as.numeric(res$empirical.power)
+              } 
+              if (simulation.params_test$interaction.efkt[4] <= 0.001) {
+                simulation.params_test$interaction.efkt[4]=0
+                
+                while (res$empirical.power < 0.8) {
+                  simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] +  0.00001
+                  res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                                 env.params_test, scenarios2run=c(4))
+                  print(res)
+                  res$interaction.efkt=as.numeric(res$interaction.efkt)
+                  res$empirical.power=as.numeric(res$empirical.power)
+                } 
+              }
+            }
+          }
+        } else {
+          simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4]-0.1
+          
+          while (res$empirical.power < 0.8) {
+            simulation.params_test$interaction.efkt[4] = simulation.params_test$interaction.efkt[4] + 0.01
+            res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                           env.params_test, scenarios2run=c(4))
+            print(res)
+            res$interaction.efkt=as.numeric(res$interaction.efkt)
+            res$empirical.power=as.numeric(res$empirical.power)
           }
         }
         
         res=res %>% select(interaction.efkt,MAF,geno.nvariants,geno.frac_causal,empirical.power)
         
         print(res)
+        res$interaction.efkt=as.numeric(res$interaction.efkt)
+        res$empirical.power=as.numeric(res$empirical.power)
         
         write.table(res, file= paste(Pathway_out,"minimum_effect_size_",PUFA_name,".txt", sep=""), col.names = FALSE, append = TRUE,
                     row.names = F, quote = FALSE, na = "",sep='\t')
-        
-        print(res)
-        
       }
     }
   }
