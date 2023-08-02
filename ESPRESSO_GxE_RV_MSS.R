@@ -893,7 +893,6 @@ if (env.params_test$env.model[4]==0) {
         env.params_test <- env.params_test[,!names(env.params_test) %in% c("env.low.lim","env.up.lim",
                                                                            "env.sd","env.mean")]
         
-        
         simulation.params_test$numsubjects[4]=20000
         
         res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
@@ -908,54 +907,64 @@ if (env.params_test$env.model[4]==0) {
           print(str(res))
         }
         
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100000
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10000
+        if (res$empirical.power > 0.8) {
+          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100000
           
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
-        }
-        
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10000
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1000
+          while (res$empirical.power < 0.8) {
+            simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10000
+            
+            res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                           env.params_test, scenarios2run=c(4))
+            print(str(res))
+          }
           
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
-        }
-        
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 1000
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 100
-          
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
-        }
-        
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10
-          
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
-        }
-        
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1
-          
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
+          if (res$empirical.power > 0.8) {
+            simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10000
+            
+            while (res$empirical.power < 0.8) {
+              simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1000
+              
+              res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                             env.params_test, scenarios2run=c(4))
+              print(str(res))
+            }
+            
+            if (res$empirical.power > 0.8) {
+              simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 1000
+              
+              while (res$empirical.power < 0.8) {
+                simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 100
+                
+                res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                               env.params_test, scenarios2run=c(4))
+                print(str(res))
+              }
+              
+              if (res$empirical.power > 0.8) {
+                simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100
+                
+                while (res$empirical.power < 0.8) {
+                  simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10
+                  
+                  res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                                 env.params_test, scenarios2run=c(4))
+                  print(str(res))
+                }
+                
+                if (res$empirical.power > 0.8) {
+                  simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10
+                  
+                  while (res$empirical.power < 0.8) {
+                    simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1
+                    
+                    res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                                   env.params_test, scenarios2run=c(4))
+                    print(str(res))
+                  }
+                }
+              }
+            }
+          }
         }
         
         res=res %>% select(numsubjects,interaction.efkt,MAF,geno.nvariants,geno.frac_causal,empirical.power)
@@ -1010,54 +1019,64 @@ if (env.params_test$env.model[4]==1) {
           print(str(res))
         }
         
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100000
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10000
+        if (res$empirical.power > 0.8) {
+          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100000
           
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
-        }
-        
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10000
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1000
+          while (res$empirical.power < 0.8) {
+            simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10000
+            
+            res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                           env.params_test, scenarios2run=c(4))
+            print(str(res))
+          }
           
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
-        }
-        
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 1000
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 100
-          
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
-        }
-        
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10
-          
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
-        }
-        
-        simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10
-        
-        while (res$empirical.power < 0.8) {
-          simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1
-          
-          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
-                                         env.params_test, scenarios2run=c(4))
-          print(str(res))
+          if (res$empirical.power > 0.8) {
+            simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10000
+            
+            while (res$empirical.power < 0.8) {
+              simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1000
+              
+              res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                             env.params_test, scenarios2run=c(4))
+              print(str(res))
+            }
+            
+            if (res$empirical.power > 0.8) {
+              simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 1000
+              
+              while (res$empirical.power < 0.8) {
+                simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 100
+                
+                res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                               env.params_test, scenarios2run=c(4))
+                print(str(res))
+              }
+              
+              if (res$empirical.power > 0.8) {
+                simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100
+                
+                while (res$empirical.power < 0.8) {
+                  simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10
+                  
+                  res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                                 env.params_test, scenarios2run=c(4))
+                  print(str(res))
+                }
+                
+                if (res$empirical.power > 0.8) {
+                  simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10
+                  
+                  while (res$empirical.power < 0.8) {
+                    simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1
+                    
+                    res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                                   env.params_test, scenarios2run=c(4))
+                    print(str(res))
+                  }
+                }
+              }
+            }
+          }
         }
         
         res=res %>% select(numsubjects,interaction.efkt,MAF,geno.nvariants,geno.frac_causal,empirical.power)
