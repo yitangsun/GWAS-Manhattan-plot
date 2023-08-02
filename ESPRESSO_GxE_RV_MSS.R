@@ -996,7 +996,7 @@ if (env.params_test$env.model[4]==1) {
                                                                            "env.OR",
                                                                            "env.sensitivity","env.specificity")]
         
-        simulation.params_test$numsubjects[4]=20000
+        simulation.params_test$numsubjects[4]=30000
         
         res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
                                        env.params_test, scenarios2run=c(4))
