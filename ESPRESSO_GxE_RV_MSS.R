@@ -910,6 +910,10 @@ if (env.params_test$env.model[4]==0) {
         if (res$empirical.power > 0.8) {
           simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100000
           
+          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                         env.params_test, scenarios2run=c(4))
+          print(str(res))
+          
           while (res$empirical.power < 0.8) {
             simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10000
             
@@ -920,6 +924,10 @@ if (env.params_test$env.model[4]==0) {
           
           if (res$empirical.power > 0.8) {
             simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10000
+            
+            res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                           env.params_test, scenarios2run=c(4))
+            print(str(res))
             
             while (res$empirical.power < 0.8) {
               simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1000
@@ -932,6 +940,10 @@ if (env.params_test$env.model[4]==0) {
             if (res$empirical.power > 0.8) {
               simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 1000
               
+              res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                             env.params_test, scenarios2run=c(4))
+              print(str(res))
+              
               while (res$empirical.power < 0.8) {
                 simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 100
                 
@@ -943,6 +955,10 @@ if (env.params_test$env.model[4]==0) {
               if (res$empirical.power > 0.8) {
                 simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100
                 
+                res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                               env.params_test, scenarios2run=c(4))
+                print(str(res))
+                
                 while (res$empirical.power < 0.8) {
                   simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10
                   
@@ -953,6 +969,10 @@ if (env.params_test$env.model[4]==0) {
                 
                 if (res$empirical.power > 0.8) {
                   simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10
+                  
+                  res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                                 env.params_test, scenarios2run=c(4))
+                  print(str(res))
                   
                   while (res$empirical.power < 0.8) {
                     simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1
@@ -1022,6 +1042,10 @@ if (env.params_test$env.model[4]==1) {
         if (res$empirical.power > 0.8) {
           simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100000
           
+          res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                         env.params_test, scenarios2run=c(4))
+          print(str(res))
+          
           while (res$empirical.power < 0.8) {
             simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10000
             
@@ -1032,6 +1056,10 @@ if (env.params_test$env.model[4]==1) {
           
           if (res$empirical.power > 0.8) {
             simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10000
+            
+            res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                           env.params_test, scenarios2run=c(4))
+            print(str(res))
             
             while (res$empirical.power < 0.8) {
               simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1000
@@ -1044,6 +1072,10 @@ if (env.params_test$env.model[4]==1) {
             if (res$empirical.power > 0.8) {
               simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 1000
               
+              res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                             env.params_test, scenarios2run=c(4))
+              print(str(res))
+              
               while (res$empirical.power < 0.8) {
                 simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 100
                 
@@ -1055,6 +1087,10 @@ if (env.params_test$env.model[4]==1) {
               if (res$empirical.power > 0.8) {
                 simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 100
                 
+                res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                               env.params_test, scenarios2run=c(4))
+                print(str(res))
+                
                 while (res$empirical.power < 0.8) {
                   simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 10
                   
@@ -1065,6 +1101,10 @@ if (env.params_test$env.model[4]==1) {
                 
                 if (res$empirical.power > 0.8) {
                   simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] - 10
+                  
+                  res=yitang_run.espresso.GxE.RV(simulation.params_test, pheno.params_test, geno.params_test,
+                                                 env.params_test, scenarios2run=c(4))
+                  print(str(res))
                   
                   while (res$empirical.power < 0.8) {
                     simulation.params_test$numsubjects[4] = simulation.params_test$numsubjects[4] + 1
