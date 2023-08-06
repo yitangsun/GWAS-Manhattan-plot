@@ -1105,3 +1105,18 @@ if (env.params_test$env.model[4]==1) {
     }
   }
 }
+
+Pathway_out=c("UKB_PUFA/MEF/")
+
+for (PUFA_name in c("dietary_omega_3","dietary_omega_6","Fish_Oil_Supplementation","total_dietary_PUFAs",
+                    "Vegetarianism")) {
+  met_sig_list <- read.table(paste(Pathway_out,"minimum_effect_size_",PUFA_name,".txt",sep = ""), header=T, sep="\t")
+  
+  met_sig_list$Interaction.effect=ifelse(met_sig_list$Interaction.effect>=0.01,format(round(met_sig_list$Interaction.effect, 2), nsmall = 2),met_sig_list$Interaction.effect)
+  
+  write.table(met_sig_list, file= paste(Pathway_out,"Final_minimum_effect_size_",PUFA_name,".txt", sep=""), col.names = T, append = TRUE,
+              row.names = F, quote = FALSE, na = "",sep='\t')
+  
+  
+}
+
